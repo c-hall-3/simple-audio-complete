@@ -53,6 +53,19 @@ audio.ontimeupdate = function (){
   }
 };
 
+// Enable button and seekbar when audio is ready to play
+audio.oncanplaythrough = function() {
+  button.disabled = false;
+  seekBar.disabled = false;
+}
+
+// Detect when audio finishes playing and restart all necessary values
+audio.onended = function () {
+  button.src = "images/play.svg";
+  trackTime.innerHTML = formatTime(0);
+  seekBar.value = 0;
+}
+
 // On seekBar input (i.e. when user clicks on the seek bar knob), set seeking to true
 seekBar.oninput = function () {
   seeking = true;
